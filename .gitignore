@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+*.log
+# Never commit private files (paid digital downloads, keys, passwords)
+private/
+secrets/
