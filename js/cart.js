@@ -6,7 +6,7 @@
   const U = window.U, KEY = "hlw_cart", SH = window.SITE.shipping;
   const sh = () => window.Shop;
   const load = () => U.get(KEY, []).filter((i) => i && sh().byId(i.id));
-  const save = (c) => { U.set(KEY, c); badge(); };
+  const save = (c) => { U.set(KEY, c); badge(); document.dispatchEvent(new Event("hlw:cart")); };
   function badge() { const n = load().reduce((s, i) => s + i.qty, 0); U.$$(".cart-count").forEach((e) => { e.textContent = n; e.dataset.n = n; }); }
   const defaults = (p) => { const o = {}; (p.variations || []).forEach((v) => (o[v.name] = v.options[0].label)); return o; };
   const norm = (p, opts) => { const o = {}; (p.variations || []).forEach((v) => { o[v.name] = v.options.some((x) => x.label === (opts || {})[v.name]) ? opts[v.name] : v.options[0].label; }); return o; };
