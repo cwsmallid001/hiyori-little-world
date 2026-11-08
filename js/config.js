@@ -21,6 +21,8 @@ window.SITE = {
     { name: "Facebook",  url: "#" },
     { name: "YouTube",   url: "#" }
   ],
+  // Patreon page. Replace "#" with the official Patreon link when ready.
+  patreonUrl: "#",
   // Photos: leave "" to show a pastel placeholder. To use a real photo,
   // put the file in assets/images/... and write its path, e.g. "assets/images/hero/hiyori.jpg"
   images: { hero: "", about: "" },

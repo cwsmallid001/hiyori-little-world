@@ -4,7 +4,6 @@
   .fgrid.two{grid-template-columns:1fr 1fr}
   .news form{flex-direction:row}
   .news form .input{flex:1}
-  .masonry{columns:3}
   .stat-grid{grid-template-columns:repeat(4,1fr)}
   .foot-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}
   .foot-brand{grid-column:auto}
@@ -51,6 +50,4 @@
   .grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
   .fan .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   .fan{grid-template-columns:1fr;}
-  .masonry{columns:4}
-  .gal-grid.sq{grid-template-columns:repeat(6,1fr)}
 }
