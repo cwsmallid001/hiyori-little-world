@@ -24,7 +24,6 @@ hiyori-little-world/
 ├── shop.html             All products (search, filter, sort)
 ├── product.html          Product details (one page for every product)
 ├── collections.html      Collections list + collection pages
-├── gallery.html          Cosplay gallery with lightbox
 ├── about.html            About Hiyori
 ├── contact.html          Contact form (demo)
 ├── faq.html              FAQ
@@ -38,7 +37,7 @@ hiyori-little-world/
 │   ├── config.js         ★ Easy settings: name, socials, shipping, queue
 │   ├── products.js       ★ All products and categories
 │   ├── collections.js    ★ All collections
-│   ├── gallery.js        ★ Gallery photos
+│   ├── cartdrawer.js     Floating cart button + cart drawer
 │   ├── queue.js          Queue system
 │   ├── cart.js           Cart
 │   ├── checkout.js       Checkout + success page
@@ -49,6 +48,12 @@ hiyori-little-world/
 └── README.md
 ```
 ★ = the files you will edit most.
+
+## What's new (version 2)
+- **Floating cart button** (bottom-right on every page except Cart and Checkout): shows the item count, opens a drawer where customers change quantities, remove items, see totals and go straight to checkout. The cart is saved in the browser, so it survives page changes and refreshing.
+- **Cosplay Gallery removed** (page, menu link, homepage preview). Collection pages keep their own photo grids.
+- **Support Us on Patreon** section on the About page. Set the link in `js/config.js` (`patreonUrl`). Until then the button shows a "coming soon" note.
+- The Admin Dashboard, members, loyalty points, events and iPad POS (Supabase) are **planned, not built yet**: see `docs/ADMIN-PLAN.md`, `docs/SUPABASE-SETUP-GUIDE.md` and `supabase/schema.PROPOSED.sql`.
 
 ## 3. Replace placeholders with real content
 
@@ -62,8 +67,10 @@ In `js/products.js`, find the product and add images:
 `images: ["assets/images/products/pb-001-a.jpg", "assets/images/products/pb-001-b.jpg"]`
 Leave `images: []` to keep the pastel placeholder.
 
-### Gallery photos
-In `js/gallery.js`, set `src` for an item, e.g. `src: "assets/images/gallery/photo1.jpg"`. To add a photo, copy one `G(...)` line.
+### Collection photos
+In `js/collections.js`, give a collection a `photos` list, e.g.
+`photos: [{ title: "Behind the scenes", src: "assets/images/collections/sakura-1.jpg" }]`
+Leave it out to show pastel placeholders. Photos open in a viewer on the collection page.
 
 ### Collection covers
 In `js/collections.js`, set `cover: "assets/images/collections/sakura.jpg"`.

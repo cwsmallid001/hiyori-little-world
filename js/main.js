@@ -11,7 +11,7 @@
     user: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c1-4 4-6 7.5-6s6.500 2 7.500 6"/></svg>',
     bag: '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.500a3 3 0 0 1 6 0V8"/></svg>'
   };
-  const NAV = [["index.html", "HOME", "home"], ["shop.html", "SHOP", "shop"], ["collections.html", "COLLECTIONS", "collections"], ["gallery.html", "COSPLAY GALLERY", "gallery"], ["about.html", "ABOUT HIYORI", "about"], ["contact.html", "CONTACT", "contact"], ["queue.html", "QUEUE", "queue"]];
+  const NAV = [["index.html", "HOME", "home"], ["shop.html", "SHOP", "shop"], ["collections.html", "COLLECTIONS", "collections"], ["about.html", "ABOUT HIYORI", "about"], ["contact.html", "CONTACT", "contact"], ["queue.html", "QUEUE", "queue"]];
   const activeFor = { product: "shop", cart: "", checkout: "", success: "" };
   const cur = activeFor[page] !== undefined ? activeFor[page] : page;
   const searchForm = (cls) => `<form class="search ${cls}" action="shop.html" role="search"><label class="sr-only" for="sq-${cls}">Search products</label><input id="sq-${cls}" type="search" name="q" placeholder="Search products" autocomplete="off"><button aria-label="Search">${ICON.search}</button></form>`;
@@ -25,7 +25,7 @@
 <div class="hdr-tools">${searchForm("search-desktop")}<button class="icon-btn" id="acct" aria-label="Account (coming soon)">${ICON.user}</button><a class="icon-btn" href="cart.html" aria-label="Shopping cart">${ICON.bag}<span class="cart-count" data-n="0">0</span></a></div></div></header>`;
     if (f) f.innerHTML = `<footer class="site-footer"><div class="wrap"><div class="foot-grid">
 <div class="foot-brand"><span class="logo-t">Hiyori's <em>Little World</em></span><p style="margin-top:.5rem;max-width:34ch">${S.tagline}</p><p class="note" style="color:#F6E9EF;opacity:.8">Official personal merchandise store (demo version)</p></div>
-<div><h4>SHOP</h4><ul><li><a href="shop.html">All products</a></li><li><a href="collections.html">Collections</a></li><li><a href="gallery.html">Cosplay gallery</a></li><li><a href="queue.html">Order queue</a></li></ul></div>
+<div><h4>SHOP</h4><ul><li><a href="shop.html">All products</a></li><li><a href="collections.html">Collections</a></li><li><a href="queue.html">Order queue</a></li></ul></div>
 <div><h4>HELP</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li><li><a href="policies.html?p=shipping">Shipping Policy</a></li><li><a href="policies.html?p=returns">Return Policy</a></li><li><a href="policies.html?p=privacy">Privacy Policy</a></li><li><a href="policies.html?p=terms">Terms &amp; Conditions</a></li></ul></div>
 <div><h4>FOLLOW</h4><ul>${S.socials.map((s) => `<li><a href="${s.url}" ${s.url === "#" ? 'data-placeholder-link' : 'target="_blank" rel="noopener"'}>${s.name}</a></li>`).join("")}</ul></div></div>
 <div class="foot-note"><span>Demo website. Not a real store. Policies are drafts.</span><span>&copy; ${new Date().getFullYear()} ${U.esc(S.brand)} (placeholder)</span></div></div></footer>`;
@@ -49,7 +49,7 @@
       else U.toast(r.msg);
     }
     const pl = e.target.closest("[data-placeholder-link]");
-    if (pl) { e.preventDefault(); U.toast("Placeholder link. Add the approved social link in js/config.js"); }
+    if (pl) { e.preventDefault(); U.toast("Placeholder link. The official link will be added soon."); }
   });
 
   // ---------- HOME ----------
@@ -68,7 +68,6 @@
       const s = Sh.stockOf(p), pct = Math.round((s / p.limited.total) * 100);
       return `<a class="ltd" href="product.html?id=${p.id}" style="text-decoration:none"><img src="${Sh.imagesOf(p)[0]}" alt="${U.esc(p.name)} (demo)"><div><h3>${U.esc(p.name)}</h3><div class="meter" role="img" aria-label="${s} of ${p.limited.total} left"><i style="width:${pct}%"></i></div><p class="meter-txt">Only ${s} left (demo stock)</p><b>${U.money(p.price)}</b></div></a>`;
     }).join("");
-    window.Gal.render(U.$("#gal-prev"), window.Gal.items.slice(0, 6), "sq");
     U.$("#socials").innerHTML = S.socials.map((s) => `<a class="social" href="${s.url}" ${s.url === "#" ? "data-placeholder-link" : 'target="_blank" rel="noopener"'}>${s.name}</a>`).join("");
   }
 
@@ -76,6 +75,9 @@
   function initAbout() {
     U.$("#about-img").src = S.images.about || U.ph("Profile photo", 1, "1/1");
     U.$("#about-socials").innerHTML = S.socials.map((s) => `<a class="social" href="${s.url}" ${s.url === "#" ? "data-placeholder-link" : 'target="_blank" rel="noopener"'}>${s.name}</a>`).join("");
+    const pb = U.$("#patreon-btn");
+    if (S.patreonUrl && S.patreonUrl !== "#") pb.href = S.patreonUrl;
+    else { pb.setAttribute("data-placeholder-link", ""); U.$("#patreon-note").textContent = "Our Patreon page is coming soon."; }
     U.$("#about-projects").innerHTML = window.Col.COLLECTIONS.map((c) => `<li><a href="collections.html?c=${c.id}">${U.esc(c.title)}</a> (placeholder)</li>`).join("");
   }
 
