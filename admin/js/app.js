@@ -15,7 +15,7 @@
   const state = { me: null, perms: new Set() };
   const can = (p) => state.perms.has(p);
   const NAV = [["overview", "Overview", "总览", () => can("dashboard.view")], ["orders", "Orders", "订单", () => can("orders.read")], ["products", "Products", "商品", () => can("products.read_all")],
-    ["members", "Members", "会员", () => can("members.read")], ["settings", "Store settings", "店铺设置", () => can("settings.write") || can("content.write") || can("policies.write") || can("payment.write")],
+    ["members", "Members", "会员", () => can("members.read")], ["events", "Events", "活动", () => can("events.read")], ["settings", "Store settings", "店铺设置", () => can("settings.write") || can("content.write") || can("policies.write") || can("payment.write")],
     ["activity", "Activity log", "活动记录", () => can("audit.read")], ["admins", "Admins", "管理员", () => can("admins.manage")], ["account", "My account", "我的账号", () => true]];
 
   // ---------- small UI helpers
